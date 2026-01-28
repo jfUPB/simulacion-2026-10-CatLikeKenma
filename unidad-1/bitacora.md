@@ -114,7 +114,6 @@ function setup() {
   createCanvas(360, 240);
   background(255);
 
-  // Crear muchas partículas
   for (let i = 0; i < 400; i++) {
     particles.push(createVector(random(width), random(height)));
   }
@@ -160,5 +159,6 @@ function draw() {
 
 
 ## Bitácora de reflexión
+
 
 
