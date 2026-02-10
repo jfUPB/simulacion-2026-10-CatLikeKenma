@@ -43,8 +43,17 @@ function draw() {
   t += 0.01;
 }
 
+**Actividad 4**
+1. No sé muy bien qué esperar, pero veo que se crea un vector, y sus valores al parecer cambian en un punto.
+2. El vector, que antes tenía los valores (6,9) ahora cambió a (20,30)
+4. En este código se está realizando un paso por referencia, porque v y position están apuntando al mismo objeto, al mismo vector, y porque al ejecutar la función, el vector original cambia.
+5. Recordé conceptos de programación que siendo honesta, no recordaba. Aprendí a referenciar un vector
+
+**Actividad 5**
+
 ## Bitácora de aplicación 
 
 
 ## Bitácora de reflexión
+
 
