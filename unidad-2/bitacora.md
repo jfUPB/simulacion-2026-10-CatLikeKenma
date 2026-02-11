@@ -50,10 +50,28 @@ function draw() {
 5. Recordé conceptos de programación que siendo honesta, no recordaba. Aprendí a referenciar un vector
 
 **Actividad 5**
+1. El método mag() devuelve la longitud de un vector, es usado para calcular la magnitud de un vector 2D. Se hace esto con la raíz de x^2 + y^2. El metodo magsq() hace lo mismo pero con la diferencia de que este último método no aplica la raíz en la ecuación y devuelve la longitud al cuadrado. Magsq() es más eficiente porque calcular la raíz cuadrada es computacionalmente más difícil que sumar y multiplicar.
+2. El método normalize escala los componentes de un vector hasta que su magnitud sea 1, convirtiéndolo en un vector unitario.
+3. El método dot() sirve para saber qué tan alineados están dos vectores, sin van hacia el mismo lado, en sentido perpendicular o en sentido contrario.
+4. La diferencia es que la versión de instancia se llama desde un vector existente, y la versión estática llama desde la clase p5.vector. Sin embargo, el cálculo es el mismo.
+5. El producto cruz entre dos vectores genera un nuevo vector que es perpendicular al plano que forman, su magnitud representa el área del paralelogramo entre ellos y su orientación depende del orden de su multiplicación.
+6. El método dist() puede utilizarse para detectar colisiones, saber si el mouse está cerca a un objeto, activar interacciones por proximidad y medir distancia entre partículas.
+7. Normalize() convierte los vectores en vectores unitarios, y limit() se usa para restringir la magnitud máxima de un vector.
+
+**Actividad 6**
+1. 
+
+**Actividad 7**
+1. Motion 101 es el modelo vectorial mínimo para simular movimiento: la aceleración modifica la velocidad y la velocidad modifica la posición.
+2. El Motion 101 se encuentra en la línea this.position.add(this.velocity); donde la posición cambia según la velocidad constante.
+
+**Actividad 8**
+1. Con la aceleración constante, la velocidad aumenta cxada frame, con una dirección fija, y se mueve cada vez más rápido. En la aceleración aleatoria, la dirección cambia constantemente, el movimiento es impredecible y la trayectoria es como temblorosa o errática. En la aceleración hacia el mouse, el objeto persigue el mouse, la trayectoria es curva, si la velocidad no es limitada puede ser muy rápido.
 
 ## Bitácora de aplicación 
 
 
 ## Bitácora de reflexión
+
 
 
