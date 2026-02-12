@@ -69,8 +69,11 @@ function draw() {
 1. Con la aceleración constante, la velocidad aumenta cxada frame, con una dirección fija, y se mueve cada vez más rápido. En la aceleración aleatoria, la dirección cambia constantemente, el movimiento es impredecible y la trayectoria es como temblorosa o errática. En la aceleración hacia el mouse, el objeto persigue el mouse, la trayectoria es curva, si la velocidad no es limitada puede ser muy rápido.
 
 ## Bitácora de aplicación 
+
 1. Decidí hacer una especie de versión mejorada de mi obra anterior, quería mejorar ese "lag" que geneeraban tantas partículas, y que tuviera una apariencia mucho más estética. Combinando colores, logré que se pareciera un poco a una galaxia, para mí. Mi obra anterior siento que fue una exploración en lo desconocido, y aquí si quise que tuviera algo más de sentido y se viera bien. Las partículas esta vez tienen un movimiento más fluido y dinámico, que aunque es aleatorio, se sigue viendo armonioso en conjunto.
-2. 
+
+
+```js
 let particles = [];
 
 function setup() {
@@ -141,11 +144,14 @@ class Particle {
     circle(this.position.x, this.position.y, 8);
   }
 }
+```
 
-3. https://editor.p5js.org/CatLikeKenma/sketches/f7-BMTHYF
-4. <img width="299" height="305" alt="Captura de pantalla 2026-02-11 222921" src="https://github.com/user-attachments/assets/9fb0bd18-9963-4b35-8753-e6657bb9a976" />
+[Enlace al proyecto](https://editor.p5js.org/CatLikeKenma/sketches/f7-BMTHYF)
+
+<img width="299" height="305" alt="Captura de pantalla 2026-02-11 222921" src="https://github.com/user-attachments/assets/9fb0bd18-9963-4b35-8753-e6657bb9a976" />
 
 ## Bitácora de reflexión
+
 
 
 
