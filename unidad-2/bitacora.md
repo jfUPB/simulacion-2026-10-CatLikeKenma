@@ -154,7 +154,7 @@ class Particle {
 
 1. Experimentando con la IA, me di cuenta que era posible hacer unas conexiones entre partículas, conexiones visibles. Esto me recordó a las neuronas, las conexiones neurológicas que se forman al crear recuerdos, aprender cosas nuevas, etc. Entonces quise hacer algo que recordara a ese tipo de conexiones.
 2. 
-```
+```js
 let nodes = [];
 let attract = true;
 
@@ -261,6 +261,7 @@ function mousePressed() {
 ```
 3. [Enlace](https://editor.p5js.org/CatLikeKenma/sketches/G0_sRIqYo)
 4. <img width="679" height="521" alt="Captura de pantalla 2026-02-13 213115" src="https://github.com/user-attachments/assets/e117cc6d-ef60-40ff-803b-86a15e33577c" />
+
 
 
 
