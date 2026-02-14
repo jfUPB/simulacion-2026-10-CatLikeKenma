@@ -152,7 +152,115 @@ class Particle {
 
 ## Bitácora de reflexión
 
+1. Experimentando con la IA, me di cuenta que era posible hacer unas conexiones entre partículas, conexiones visibles. Esto me recordó a las neuronas, las conexiones neurológicas que se forman al crear recuerdos, aprender cosas nuevas, etc. Entonces quise hacer algo que recordara a ese tipo de conexiones.
+2. 
+```
+let nodes = [];
+let attract = true;
 
+function setup() {
+  createCanvas(800, 600);
+  background(10);
+
+  for (let i = 0; i < 90; i++) {
+    nodes.push(new Node(random(width), random(height)));
+  }
+}
+
+function draw() {
+  fill(10, 40);
+  noStroke();
+  rect(0, 0, width, height);
+
+  for (let n of nodes) {
+    n.reactToMouse();
+    n.update();
+    n.display();
+  }
+
+  drawConnections();
+}
+
+class Node {
+  constructor(x, y) {
+    this.position = createVector(x, y);
+    this.velocity = createVector(random(-1,1), random(-1,1));
+    this.acceleration = createVector(0, 0);
+    this.maxSpeed = 3;
+  }
+
+  reactToMouse() {
+    let mouse = createVector(mouseX, mouseY);
+    let force = p5.Vector.sub(mouse, this.position);
+
+    let distance = force.mag();
+
+    if (distance < 200) {
+      force.normalize();
+
+      if (!attract) {
+        force.mult(-1); // repulsión
+      }
+
+      force.mult(0.3);
+      this.acceleration = force;
+    }
+  }
+
+  update() {
+    this.velocity.add(this.acceleration);
+    this.velocity.limit(this.maxSpeed);
+    this.position.add(this.velocity);
+
+    this.acceleration.mult(0);
+
+
+    if (this.position.x > width || this.position.x < 0) {
+      this.velocity.x *= -1;
+    }
+
+    if (this.position.y > height || this.position.y < 0) {
+      this.velocity.y *= -1;
+    }
+  }
+
+  display() {
+
+    let size = this.velocity.mag() * 3;
+
+    noStroke();
+    fill(255);
+    circle(this.position.x, this.position.y, size);
+  }
+}
+
+function drawConnections() {
+  for (let i = 0; i < nodes.length; i++) {
+    for (let j = i + 1; j < nodes.length; j++) {
+
+      let diff = p5.Vector.sub(nodes[i].position, nodes[j].position);
+      let d = diff.mag();
+
+      if (d < 70) {
+        let alpha = 150 - d * 2;
+        stroke(255, alpha);
+        line(
+          nodes[i].position.x,
+          nodes[i].position.y,
+          nodes[j].position.x,
+          nodes[j].position.y
+        );
+      }
+    }
+  }
+}
+
+function mousePressed() {
+  attract = !attract; 
+}
+```
+3. [Enlace](https://editor.p5js.org/CatLikeKenma/sketches/G0_sRIqYo)
+4. <img width="679" height="521" alt="Captura de pantalla 2026-02-13 213115" src="https://github.com/user-attachments/assets/e117cc6d-ef60-40ff-803b-86a15e33577c" />
 
 
 
