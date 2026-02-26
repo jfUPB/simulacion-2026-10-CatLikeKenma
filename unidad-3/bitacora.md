@@ -1,7 +1,10 @@
 # Unidad 3
 
 ## Bitácora de proceso de aprendizaje
-
+**Actividad 03**
+1. Resistencia del aire: https://editor.p5js.org/CatLikeKenma/sketches/LM4sFYf3H
+2. Atracción gravitatoria: https://editor.p5js.org/CatLikeKenma/sketches/Trbn5ET7Y
+3. Fricción: https://editor.p5js.org/CatLikeKenma/sketches/BC8O_ft11
 
 ## Bitácora de aplicación 
 **Actividad 04**
@@ -119,4 +122,5 @@ function displayWater() {
 4. <img width="731" height="584" alt="Captura de pantalla 2026-02-25 224723" src="https://github.com/user-attachments/assets/06c26abb-dfad-4828-94aa-ee3ea772f3c2" />
 
 ## Bitácora de reflexión
+
 
