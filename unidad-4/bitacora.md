@@ -8,7 +8,9 @@
 
 
 **Actividad 03**
-1. let pos;
+1.
+```js
+let pos;
 let vel;
 
 function setup() {
@@ -45,7 +47,7 @@ function draw() {
 
   pop();
 }
-
+```
 **Actividad 04**
 1.
 
@@ -54,3 +56,4 @@ function draw() {
 
 
 ## Bitácora de reflexión
+
