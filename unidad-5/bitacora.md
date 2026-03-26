@@ -17,7 +17,9 @@
 ## Bitácora de aplicación 
 1. "Memorias que Flotan" Representaré la nostalgia con un concepto acuático, porque es de mis conceptos y estéticas favoritas. Se me ocurrió representar las memorias en forma de burbujas, me inspiré un poco de la película Intensamente. Nostalgia es un personaje que me recuerda a mi abuela, y ella siempre me cuenta historias, entonces pense en el nacimiento de una burbuja como el evento ocurriendo, o la creación del recuerdo, después crece y se mantiene, hasta que se olvida PERO no desaparece completamente, porque la nostalgia es el arte de recordar solo las flores y olvidar las espinas.
 2. https://editor.p5js.org/CatLikeKenma/sketches/4YUph8DqS
-3. let particles = [];
+3.
+```js
+let particles = [];
 
 function setup() {
   createCanvas(640,480);
@@ -178,7 +180,7 @@ function mousePressed(){
 
   particles.push(new Bubble(x,y));
 }
-
+```
 4.<img width="152" height="180" alt="Captura de pantalla 2026-03-25 221522" src="https://github.com/user-attachments/assets/66e9dc66-000e-427b-a315-cc3ed4608f3d" />
 <img width="161" height="136" alt="Captura de pantalla 2026-03-25 221530" src="https://github.com/user-attachments/assets/344cce5f-cf6a-4809-a964-6776444bd5b7" />
 <img width="223" height="162" alt="Captura de pantalla 2026-03-25 221540" src="https://github.com/user-attachments/assets/2dd7c848-f208-4696-bc22-fff91bfb8dec" />
