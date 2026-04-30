@@ -6,6 +6,7 @@
 ## Bitácora de aplicación 
 <img width="1995" height="1913" alt="Nota sin nombre2_1" src="https://github.com/user-attachments/assets/2384b713-29cf-4576-9f27-f67e107e85ad" />
 
+```js
 let font;
 let particles = [];
 let haunterPoints = [];
@@ -196,8 +197,9 @@ function drawTongue() {
   line(0 + swing/2, 15, 0 + swing, 100);
   pop();
 }
-
-Link: https://editor.p5js.org/CatLikeKenma/sketches/HXhcqW-_L
+```
+[Link Edit:](https://editor.p5js.org/CatLikeKenma/sketches/HXhcqW-_L)
+[Link View:](https://editor.p5js.org/CatLikeKenma/full/HXhcqW-_L)
 
 <img width="609" height="378" alt="Captura de pantalla 2026-04-30 134920" src="https://github.com/user-attachments/assets/964875f9-6d1a-4876-bd55-e67c2d032c17" />
 <img width="584" height="392" alt="Captura de pantalla 2026-04-30 134939" src="https://github.com/user-attachments/assets/6335bb80-44ec-4540-a8ea-6112351fe271" />
