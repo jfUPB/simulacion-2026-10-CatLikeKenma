@@ -14,27 +14,42 @@ let state = "text";
 let showTongue = false;
 let tongueSound; 
 
+let uStart, uEnd; 
+
 function preload() {
   font = loadFont('PlayfulTime-BLBB8.ttf');
   tongueSound = loadSound('HaunterSound.mp3'); 
 }
 
 function setup() {
-  createCanvas(800, 600);
+  // TRUCO CSS: Quitamos los márgenes del body para que la pantalla completa sea perfecta
+  let css = document.createElement("style");
+  css.innerHTML = "body { margin: 0; padding: 0; overflow: hidden; background-color: #0f0519; } canvas { display: block; }";
+  document.head.appendChild(css);
+
+  // Inicializamos el canvas al tamaño completo de la ventana
+  createCanvas(windowWidth, windowHeight);
 
   let fullText = "HAUNTER";
-  let pts = font.textToPoints(fullText, 120, height / 2 + 50, 140, {
+  let fontSize = 140;
+  
+  // CENTRADO PERFECTO: Medimos el ancho y alto real de la palabra
+  let bounds = font.textBounds(fullText, 0, 0, fontSize);
+  let textX = width / 2 - bounds.w / 2;
+  let textY = height / 2 + bounds.h / 2;
+
+  let pts = font.textToPoints(fullText, textX, textY, fontSize, {
     sampleFactor: 0.35 
   });
 
-  // Identificamos la letra U (tercera letra)
-  let uStart = floor(pts.length * 0.28);
-  let uEnd = floor(pts.length * 0.42);
+  uStart = floor(pts.length * 0.28);
+  uEnd = floor(pts.length * 0.42);
 
-  // Generamos los puntos de destino
-  haunterPoints = generateHaunterShape(pts.length);
+  let bodyPtsCount = pts.length - (uEnd - uStart);
+  haunterPoints = generateHaunterShape(bodyPtsCount);
   let smilePts = generateSmilePoints(uEnd - uStart);
 
+  let bodyIndex = 0; 
   for (let i = 0; i < pts.length; i++) {
     let targetX, targetY;
     
@@ -43,8 +58,9 @@ function setup() {
       targetX = sPt.x;
       targetY = sPt.y;
     } else {
-      targetX = haunterPoints[i].x;
-      targetY = haunterPoints[i].y;
+      targetX = haunterPoints[bodyIndex].x;
+      targetY = haunterPoints[bodyIndex].y;
+      bodyIndex++; 
     }
     
     particles.push(new Particle(pts[i].x, pts[i].y, targetX, targetY));
@@ -66,12 +82,14 @@ function draw() {
   }
 }
 
-function mousePressed() {
-  state = "transforming";
-  userStartAudio(); // Habilita el audio en el navegador
-}
-
 function keyPressed() {
+  if (key === 'q' || key === 'Q') {
+    state = "transforming";
+    if (getAudioContext().state !== 'running') {
+      userStartAudio(); 
+    }
+  }
+
   if (key === ' ') {
     showTongue = !showTongue;
     if (showTongue && tongueSound) {
@@ -80,9 +98,55 @@ function keyPressed() {
       tongueSound.stop();
     }
   }
+  
+  if (key === 'f' || key === 'F') {
+    let fs = fullscreen();
+    fullscreen(!fs);
+  }
 }
 
-// --- FUNCIÓN PARA LA SONRISA (LA QUE FALTABA) ---
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+  recalculateTargets();
+}
+
+function recalculateTargets() {
+  // 1. Recalculamos el centro exacto para el texto
+  let fullText = "HAUNTER";
+  let fontSize = 140;
+  let bounds = font.textBounds(fullText, 0, 0, fontSize);
+  let textX = width / 2 - bounds.w / 2;
+  let textY = height / 2 + bounds.h / 2;
+
+  let pts = font.textToPoints(fullText, textX, textY, fontSize, {
+    sampleFactor: 0.35 
+  });
+
+  // 2. Recalculamos los objetivos para la forma de Haunter
+  let bodyPtsCount = particles.length - (uEnd - uStart);
+  haunterPoints = generateHaunterShape(bodyPtsCount);
+  let smilePts = generateSmilePoints(uEnd - uStart);
+
+  let bodyIndex = 0;
+  for (let i = 0; i < particles.length; i++) {
+    
+    // CORRECCIÓN: Si todavía es texto, movemos las partículas a su nuevo centro
+    if (state === "text" && i < pts.length) {
+      particles[i].pos.x = pts[i].x;
+      particles[i].pos.y = pts[i].y;
+    }
+
+    if (i >= uStart && i < uEnd) {
+      particles[i].target.x = smilePts[i - uStart].x;
+      particles[i].target.y = smilePts[i - uStart].y;
+    } else {
+      particles[i].target.x = haunterPoints[bodyIndex].x;
+      particles[i].target.y = haunterPoints[bodyIndex].y;
+      bodyIndex++;
+    }
+  }
+}
+
 function generateSmilePoints(numPts) {
   let smile = [];
   for (let i = 0; i < numPts; i++) {
@@ -95,7 +159,6 @@ function generateSmilePoints(numPts) {
   return smile;
 }
 
-// --- CLASE PARTICLE ---
 class Particle {
   constructor(x, y, tx, ty) {
     this.pos = createVector(x, y);
@@ -130,17 +193,18 @@ class Particle {
   }
 }
 
-// --- SILUETA CUERPO ---
 function generateHaunterShape(numPoints) {
   let pts = [];
   let cx = width / 2;
   let cy = height / 2;
+  
   let silhouette = [
     createVector(0, -150), createVector(40, -130), createVector(110, -170),
     createVector(150, -60), createVector(140, 40), createVector(0, 220),
     createVector(-140, 40), createVector(-150, -60), createVector(-110, -170),
     createVector(-40, -130)
   ];
+  
   let pointsPerSegment = floor(numPoints / silhouette.length);
   for (let i = 0; i < silhouette.length; i++) {
     let start = silhouette[i];
@@ -154,7 +218,6 @@ function generateHaunterShape(numPoints) {
   return pts;
 }
 
-// --- ELEMENTOS DE LA CARA ---
 function drawHaunterFace() {
   push();
   translate(width / 2, height / 2 - 20);
